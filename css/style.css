@@ -1,0 +1,22 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.input container {
+    display: flex;
+}
+
+.input {
+    margin: 0px 0px 0px 10px ;
+}
+
+.city-data {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}
