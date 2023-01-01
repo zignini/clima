@@ -2,7 +2,7 @@
 
 Um app que busca o clima atual de qualquer cidade do mundo usando a API da AccuWeather. 
 
-<p align="center"> [Acesse ao vivo aqui](https://clima-topaz-two.vercel.app/) | [Tecnologias](#-tecnologias) | [APIs](#-apis)</p> 
+<p align="center"> <a href="https://clima-topaz-two.vercel.app/">Acesse ao vivo aqui</a> | <a href="#-tecnologias">Tecnologias</a> | <a href="#-apis">APIs</a></p> 
 
 ## 🚀 Tecnologias
 
