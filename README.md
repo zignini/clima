@@ -18,7 +18,3 @@ Também foi usada no projeto a seguinte API:
 
 - [AccuWeather](https://developer.accuweather.com/)
 
-## 💻 Projeto 
-
-Acesse o projeto [aqui](https://clima-topaz-two.vercel.app/).
-
