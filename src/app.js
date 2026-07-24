@@ -9,31 +9,30 @@ const cityDayOrNight = document.querySelector('[data-js="city-day-or-night"]')
 const addTextContent = (addTo, content) => addTo.textContent = content
 
 const getAndAddContent = async cityName => {
-    const {Key, LocalizedName} = await getCity(cityName)
 
-    const { IsDayTime, Temperature, WeatherIcon, WeatherText } = await getCityWeather(Key)
+    const { local_names: {pt : localizedName}, lat, lon } = await getCity(cityName)
 
-    addTextContent(cityNameContainer, LocalizedName)
+    const { main: {temp}, weather: [ {main : weatherName} ] } = await getCityWeather(lat, lon) // aliases to make variables more self-explanatory
 
-    cityWeatherIcon.src = `./images/${WeatherIcon}.png`
+    addTextContent(cityNameContainer, localizedName)
 
-    addTextContent(cityWeather, WeatherText)
+    addTextContent(cityWeather, weatherName)
 
-    addTextContent(cityTemperature, `${Temperature.Metric.Value} °C`)
+    addTextContent(cityTemperature, `${Math.floor(temp)} °C`)
 
-    cityDayOrNight.textContent = IsDayTime 
-        ? `Está de dia nessa cidade.` 
-        : `Está de noite na cidade.`
+    // TODO: implement logic to show if it's day or night in the given city because new API includes only information about current time and sunset/sunrise.
 }
 
 form.addEventListener('submit', async event => {
     event.preventDefault()
+    
+    const inputValue = event.target.city.value
 
-    const input = event.target.city.value
-
-    getAndAddContent(input)
-
-    cityDataContainer.classList.remove('d-none')
+    getAndAddContent(inputValue)
 
     form.reset()
+
+    cityDataContainer.classList.remove('d-none')
 })
+
+// 
