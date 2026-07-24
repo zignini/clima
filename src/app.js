@@ -8,11 +8,13 @@ const cityDayOrNight = document.querySelector('[data-js="city-day-or-night"]')
 
 const addTextContent = (addTo, content) => addTo.textContent = content
 
+
+
 const getAndAddContent = async cityName => {
 
-    const { local_names: {pt : localizedName}, lat, lon } = await getCity(cityName)
+    const { local_names: {pt : localizedName}, lat, lon } = await getCity(cityName) // alias to make variable self-explanatory
 
-    const { main: {temp}, weather: [ {main : weatherName} ] } = await getCityWeather(lat, lon) // aliases to make variables more self-explanatory
+    const { main: {temp}, weather: [ {main : weatherName} ] } = await getCityWeather(lat, lon) // aliases to make variables self-explanatory
 
     addTextContent(cityNameContainer, localizedName)
 
@@ -20,7 +22,7 @@ const getAndAddContent = async cityName => {
 
     addTextContent(cityTemperature, `${Math.floor(temp)} °C`)
 
-    // TODO: implement logic to show if it's day or night in the given city because new API includes only information about current time and sunset/sunrise.
+    // TODO: implement logic to show if it's day or night in the given city because new API (Open Weather) includes only information about current time and sunset/sunrise.
 }
 
 form.addEventListener('submit', async event => {

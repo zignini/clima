@@ -15,31 +15,51 @@
     <title>Clima atual</title>
 </head>
 
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>
-                Clima atual
-            </h1>
+<body class="min-vh-100 d-flex flex-column">
+    <div class="container flex-grow-1 d-flex flex-column justify-content-center align-items-center py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">Clima atual</h1>
+            <p class="text-muted">Descubra o clima em qualquer cidade do mundo</p>
         </div>
-        <div class="input container">
-            <form>
-                <label for="city" class="input-label">Insira o nome de uma cidade:</label>
-                <input id="city" type="text" class="input" autofocus>
-                <button type="submit" class="btn btn-primary">Buscar</button>
+        
+        <div class="w-100" style="max-width: 500px;">
+            <form class="mb-4">
+                <div class="mb-3">
+                    <label for="city" class="form-label fw-semibold">Insira o nome de uma cidade:</label>
+                    <div class="input-group">
+                        <input id="city" type="text" class="form-control form-control-lg" placeholder="Ex: São Paulo" autofocus>
+                        <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
+                    </div>
+                </div>
             </form>
-        </div>
-        <div class="card city-data container-sm d-none">
-            <h2 class="card-title" data-js="city-name">Nome da cidade</h2>
-            <div class="city-weather-icon">
-                <img data-js="city-weather-icon" src="./images/1.png"
-                    alt="Condições climáticas da cidade">
+            
+            <div class="card city-data d-none shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h2 class="card-title h3 mb-3" data-js="city-name">Nome da cidade</h2>
+                    <div class="city-weather-icon mb-3">
+                        <img data-js="city-weather-icon" src="./images/1.png"
+                            alt="Condições climáticas da cidade" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <p class="card-text text-muted mb-2" data-js="city-weather">Clima</p>
+                    <h3 class="display-5 fw-bold text-primary mb-0" data-js="city-temperature">00 °C</h3>
+                </div>
             </div>
-                <p data-js="city-weather">Clima</p>
-                <h3 data-js="city-temperature">00 °C</h3>
-                <!-- <p data-js="city-day-or-night">Dia ou noite</p> -->
         </div>
     </div>
+    
+    <footer class="bg-light py-3 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0 text-muted">
+                <small>
+                    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-muted">
+                        CC BY 4.0
+                    </a> 
+                    By <a href="#" class="text-decoration-none text-muted">Jacqueline Pruschinski</a>
+                </small>
+            </p>
+        </div>
+    </footer>
+    
     <script src="./src/weather.js"></script>
     <script src="./src/app.js"></script>
 </body>

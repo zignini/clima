@@ -14,7 +14,7 @@ const getCity = async cityName => {
 const getCityWeather = async (latitude, longitude) => {
     const url = getCityWeatherUrl(latitude, longitude)
     const response = await fetch(url)
-    const object = await response.json()
-    return object
+    const weatherInformation = await response.json()
+    return weatherInformation
 }
 
