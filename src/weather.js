@@ -1,19 +1,20 @@
-const apiKey = 'Ir8b1ysviDKkFFRpQn4AaiKGxGunJBB4'
+const apiKey = 'ead133e02ea32340e8ab826c63f73fa2'
+const baseUrl = 'https://api.openweathermap.org/'
 
-const getCityUrl = cityName => `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${cityName}&language=pt-br&details=true`
+const getCityUrl = cityName => `${baseUrl}geo/1.0/direct?q=${encodeURIComponent(cityName)}&limit=1&appid=${apiKey}`
 
-const getCityWeatherUrl = cityKey => `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apiKey}&language=pt-br&details=true`
+const getCityWeatherUrl = (latitude, longitude) => `${baseUrl}data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
 
 const getCity = async cityName => {
     const response = await fetch(getCityUrl(cityName))
-    const [object] = await response.json()
+    const [city] = await response.json()
+    return city
+}
+
+const getCityWeather = async (latitude, longitude) => {
+    const url = getCityWeatherUrl(latitude, longitude)
+    const response = await fetch(url)
+    const object = await response.json()
     return object
 }
 
-const getCityWeather = async Key => {
-    // const { Key } = await getCity(cityName)
-    const url = getCityWeatherUrl(Key)
-    const response = await fetch(url)
-    const [object] = await response.json()
-    return object
-}
