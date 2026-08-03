@@ -5,3 +5,35 @@
 .d-none {
     display: none;
 }
+
+:root {
+    --primary-color: #2B2D42;
+    --secondary-color: #8D99AE;
+    --background-color: #EDF2F4;
+    --bs-primary-rgb: 43, 45, 66;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+} 
+
+.footer-icon {
+    display: inline-block;
+    height: 1em; 
+    width: auto;
+}
