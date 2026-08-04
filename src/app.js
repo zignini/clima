@@ -6,23 +6,42 @@ const cityWeather = document.querySelector('[data-js="city-weather"]')
 const cityTemperature = document.querySelector('[data-js="city-temperature"]')
 const cityDayOrNight = document.querySelector('[data-js="city-day-or-night"]')
 
+const weatherNameMapEnPt = new Map(
+    [
+        ["Clear", "Ensolarado"],
+        ["Clouds", "Nublado"],
+        ["Drizzle", "Garoa"],
+        ["Rain", "Chuva"],
+        ["Thunderstorm", "Tempestade"],
+        ["Fog", "Neblina"],
+        ["Mist", "Névoa"],
+        ["Haze", "Névoa fina"],
+        ["Squall", "Rajadas de vento"],
+        ["Snow", "Nevasca"],
+        ["Smoke", "Fumaça"],
+        ["Dust", "Poeira"],
+        ["Sand", "Tempestade de areia"],
+        ["Tornado", "Tornado"]
+    ]
+)
+
 const addTextContent = (addTo, content) => addTo.textContent = content
-
-
 
 const getAndAddContent = async cityName => {
 
-    const { local_names: {pt : localizedName}, lat, lon } = await getCity(cityName) // alias to make variable self-explanatory
+    const { name, lat, lon } = await getCity(cityName) 
 
     const { main: {temp}, weather: [ {main : weatherName} ] } = await getCityWeather(lat, lon) // aliases to make variables self-explanatory
 
-    addTextContent(cityNameContainer, localizedName)
+    addTextContent(cityNameContainer, name)
 
-    addTextContent(cityWeather, weatherName)
+    addTextContent(cityWeather, weatherNameMapEnPt.get(weatherName))
 
     addTextContent(cityTemperature, `${Math.floor(temp)} °C`)
 
-    // TODO: implement logic to show if it's day or night in the given city because new API (Open Weather) includes only information about current time and sunset/sunrise.
+    cityDataContainer.classList.remove('d-none')
+
+    // TODO: include weather icons (including if it's day or night time)
 }
 
 form.addEventListener('submit', async event => {
@@ -30,11 +49,10 @@ form.addEventListener('submit', async event => {
     
     const inputValue = event.target.city.value
 
-    getAndAddContent(inputValue)
+    await getAndAddContent(inputValue)
 
     form.reset()
 
-    cityDataContainer.classList.remove('d-none')
 })
 
 // 
