@@ -29,11 +29,11 @@ const addTextContent = (addTo, content) => addTo.textContent = content
 
 const getAndAddContent = async cityName => {
 
-    const { name, lat, lon } = await getCity(cityName) 
+    const { name, local_names: {pt}, lat, lon } = await getCity(cityName) 
 
     const { main: {temp}, weather: [ {main : weatherName} ] } = await getCityWeather(lat, lon) // aliases to make variables self-explanatory
 
-    addTextContent(cityNameContainer, name)
+    addTextContent(cityNameContainer, pt || name)
 
     addTextContent(cityWeather, weatherNameMapEnPt.get(weatherName))
 
@@ -41,18 +41,34 @@ const getAndAddContent = async cityName => {
 
     cityDataContainer.classList.remove('d-none')
 
-    // TODO: include weather icons (including if it's day or night time)
+    // TODO: include weather icons (day and night time)
 }
 
 form.addEventListener('submit', async event => {
     event.preventDefault()
     
-    const inputValue = event.target.city.value
+    const inputValue = event.target.city.value.trim()
 
-    await getAndAddContent(inputValue)
+    if (!inputValue) {
+        alert('Insira o nome de uma cidade.')
+        return
+    }
 
-    form.reset()
+    try {
+        await getAndAddContent(inputValue)
+        form.reset()
+    } catch (error) {
+        console.error('Erro ao buscar dados do clima:', error)
+        
+        if (error.message.includes('Cidade não encontrada')) {
+            alert('Cidade não encontrada. Verifique o nome e tente novamente.')
+        } else if (error.message.includes('Erro ao buscar as informações')) {
+            alert('Erro ao buscar as informações. Tente novamente mais tarde.')
+        } else {
+            alert('Ocorreu um erro inesperado. Tente novamente.')
+        }
+    }
 
 })
 
-// 
+
