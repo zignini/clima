@@ -1,20 +1,12 @@
 # Clima atual
 
-Um app que busca o clima atual de qualquer cidade do mundo usando a API da AccuWeather. 
+Um app que busca o clima atual de qualquer cidade do mundo usando a API da Open Weather. 
 
-<p align="center"> <a href="https://clima-topaz-two.vercel.app/">Acesse ao vivo aqui</a> | <a href="#-tecnologias">Tecnologias</a> | <a href="#-apis">APIs</a></p> 
-
-## 🚀 Tecnologias
-
-Este projeto foi desenvolvido usando as seguintes tecnologias: 
-
-- HTML e CSS
-- JavaScript
-- Git e Github
+<p align="center"> <a href="https://clima-topaz-two.vercel.app/">Acesse ao vivo aqui</a> | <a href="#-apis">APIs</a></p> 
 
 ## 🔗 APIs
 
-Também foi usada no projeto a seguinte API: 
+Foi usada no projeto a seguinte API: 
 
-- [AccuWeather](https://developer.accuweather.com/)
+- [Open Weather](https://openweathermap.org/api/current?collection=current_forecast)
 
